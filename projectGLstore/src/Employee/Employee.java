@@ -5,8 +5,10 @@ public class Employee {
     private String fname;
     private String lname;
     private int position;
+    private int positionId;
+    private String nameposit;
 
-    public Employee(int id, String fname, String lname, int position) {
+    public Employee(int id, String fname, String lname, int position,  int positionId, String nameposit) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
@@ -29,4 +31,13 @@ public class Employee {
     public int getPosition() {
         return position;
     }
+    
+    public int getPositionId() {
+        return positionId;
+    }
+    
+    public String getNameposit(){
+        return nameposit;
+    }
+    
 }
