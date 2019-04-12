@@ -23,12 +23,12 @@ DROP TABLE IF EXISTS `account`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `account` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `idc` int(11) DEFAULT NULL,
-  `accNum` varchar(10) DEFAULT NULL,
-  `amount` double DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `idc` (`idc`)
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `accName` int(11) NOT NULL,
+  `money` int(11) NOT NULL,
+  `IDClient` int(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `IDClient` (`IDClient`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -49,14 +49,14 @@ DROP TABLE IF EXISTS `card`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `card` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `ida` int(11) DEFAULT NULL,
-  `pin` varchar(6) DEFAULT NULL,
-  `expiredM` int(11) DEFAULT NULL,
-  `expiredY` int(11) DEFAULT NULL,
-  `active` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `ida` (`ida`)
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `PIN` varchar(4) NOT NULL,
+  `active` tinyint(1) NOT NULL,
+  `expireY` int(11) NOT NULL,
+  `expireM` int(11) NOT NULL,
+  `IDAccount` int(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `IDAccount` (`IDAccount`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -77,12 +77,12 @@ DROP TABLE IF EXISTS `cardtrans`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cardtrans` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `idCard` int(11) DEFAULT NULL,
-  `transDate` datetime DEFAULT NULL,
-  `transAmount` double DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `idCard` (`idCard`)
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `transDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `transAmount` int(11) NOT NULL,
+  `IDCard` int(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `IDCard` (`IDCard`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -103,11 +103,11 @@ DROP TABLE IF EXISTS `client`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `client` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lname` varchar(15) DEFAULT NULL,
-  `fname` varchar(15) DEFAULT NULL,
-  `email` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `fname` varchar(30) NOT NULL,
+  `lname` varchar(30) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `ID` int(11) NOT NULL,
+  PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -128,11 +128,12 @@ DROP TABLE IF EXISTS `employee`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `employee` (
-  `id` int(3) NOT NULL AUTO_INCREMENT,
-  `lname` varchar(15) DEFAULT NULL,
-  `fname` varchar(15) DEFAULT NULL,
-  `position` int(3) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `fname` varchar(30) NOT NULL,
+  `lname` varchar(30) NOT NULL,
+  `position` int(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `position` (`position`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -142,7 +143,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (1,'Reznov','Viktor',1),(2,'Zakhaev','Imran',2);
+INSERT INTO `employee` VALUES (1,'Jo?ko','Golonka',1),(2,'Imran','Zakhaev',2);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -154,11 +155,11 @@ DROP TABLE IF EXISTS `failcardlog`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `failcardlog` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `idCard` int(11) DEFAULT NULL,
-  `failDate` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `idCard` (`idCard`)
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `FailDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `IDCard` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `IDCard` (`IDCard`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -179,12 +180,12 @@ DROP TABLE IF EXISTS `loginclient`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `loginclient` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `idc` int(11) DEFAULT NULL,
-  `login` varchar(15) DEFAULT NULL,
-  `password` varchar(15) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `idc` (`idc`)
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `login` varchar(30) NOT NULL,
+  `password` varchar(30) NOT NULL,
+  `IDClient` int(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `IDClient` (`IDClient`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -198,29 +199,30 @@ LOCK TABLES `loginclient` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `loginemp`
+-- Table structure for table `loginemployee`
 --
 
-DROP TABLE IF EXISTS `loginemp`;
+DROP TABLE IF EXISTS `loginemployee`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `loginemp` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `login` varchar(15) DEFAULT NULL,
-  `password` varchar(15) DEFAULT NULL,
-  `ide` int(3) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `ide` (`ide`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+CREATE TABLE `loginemployee` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `login` varchar(30) NOT NULL,
+  `password` varchar(30) NOT NULL,
+  `IDEmployee` int(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `IDEmployee` (`IDEmployee`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `loginemp`
+-- Dumping data for table `loginemployee`
 --
 
-LOCK TABLES `loginemp` WRITE;
-/*!40000 ALTER TABLE `loginemp` DISABLE KEYS */;
-/*!40000 ALTER TABLE `loginemp` ENABLE KEYS */;
+LOCK TABLES `loginemployee` WRITE;
+/*!40000 ALTER TABLE `loginemployee` DISABLE KEYS */;
+INSERT INTO `loginemployee` VALUES (1,'emp','emp',1);
+/*!40000 ALTER TABLE `loginemployee` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -231,12 +233,12 @@ DROP TABLE IF EXISTS `loginhistory`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `loginhistory` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `idl` int(11) DEFAULT NULL,
-  `logDate` datetime DEFAULT NULL,
-  `success` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `idl` (`idl`)
+  `loginTime` timestamp NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `success` tinyint(1) NOT NULL,
+  `IDLoginClient` int(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `IDLoginClient` (`IDLoginClient`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -257,9 +259,9 @@ DROP TABLE IF EXISTS `positions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `positions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(15) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) NOT NULL,
+  PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -269,7 +271,7 @@ CREATE TABLE `positions` (
 
 LOCK TABLES `positions` WRITE;
 /*!40000 ALTER TABLE `positions` DISABLE KEYS */;
-INSERT INTO `positions` VALUES (1,'boss'),(2,'common');
+INSERT INTO `positions` VALUES (1,'common'),(2,'boss');
 /*!40000 ALTER TABLE `positions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -281,15 +283,15 @@ DROP TABLE IF EXISTS `transaction`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `transaction` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `idacc` int(11) DEFAULT NULL,
-  `idEmployee` int(11) DEFAULT NULL,
-  `transAmount` double DEFAULT NULL,
-  `transDate` datetime DEFAULT NULL,
-  `recAccount` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `idacc` (`idacc`),
-  KEY `idEmployee` (`idEmployee`)
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `transAmount` int(11) NOT NULL,
+  `transDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `RecAccount` int(11) NOT NULL,
+  `IDAccount` int(11) NOT NULL,
+  `IDEmployee` int(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `IDAccount` (`IDAccount`),
+  KEY `IDEmployee` (`IDEmployee`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -311,4 +313,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-11 21:22:49
+-- Dump completed on 2019-04-12 12:00:07
