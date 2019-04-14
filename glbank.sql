@@ -212,7 +212,7 @@ CREATE TABLE `loginemployee` (
   `IDEmployee` int(11) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `IDEmployee` (`IDEmployee`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -221,7 +221,7 @@ CREATE TABLE `loginemployee` (
 
 LOCK TABLES `loginemployee` WRITE;
 /*!40000 ALTER TABLE `loginemployee` DISABLE KEYS */;
-INSERT INTO `loginemployee` VALUES (1,'emp','emp',1);
+INSERT INTO `loginemployee` VALUES (1,'emp','emp',1),(2,'basic','secret',2);
 /*!40000 ALTER TABLE `loginemployee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -313,4 +313,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-12 12:00:07
+-- Dump completed on 2019-04-14 18:27:45
