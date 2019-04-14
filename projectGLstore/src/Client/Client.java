@@ -1,22 +1,27 @@
-package Employee;
+package Client;
 
-public class Employee {
+public class Client {
     private int id;
     private String fname;
     private String lname;
-    private int position;
+    private String email;
 
-    public Employee(int id, String fname, String lname, int position) {
+    public Client(int id, String fname, String lname, String email) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
-        this.position = position;
+        this.email = email;
     }
-    public Employee(String fname, String lname){
+   public Client (String fname, String lname){
+       this.fname = fname;
+       this.lname = lname;
+   }
+
+    public Client( String fname, String lname, String email) {
         this.fname = fname;
         this.lname = lname;
+        this.email = email;
     }
-
 
     public int getId() {
         return id;
@@ -30,7 +35,9 @@ public class Employee {
         return lname;
     }
 
-    public int getPosition() {
-        return position;
+    public String getEmail() { return email;
     }
+
+
+
 }

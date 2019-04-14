@@ -11,7 +11,7 @@ import javafx.scene.layout.BorderPane;
 public class Main extends Application {
 	@Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../FXML/sample.fxml"));
         primaryStage.setTitle("GLB");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
