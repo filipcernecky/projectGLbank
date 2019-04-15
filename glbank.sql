@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `account`;
 CREATE TABLE `account` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `accName` int(11) NOT NULL,
-  `money` int(11) NOT NULL,
+  `amount` varchar(255) NOT NULL,
   `IDClient` int(11) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `IDClient` (`IDClient`)
@@ -313,4 +313,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-14 18:27:45
+-- Dump completed on 2019-04-15  9:28:02
