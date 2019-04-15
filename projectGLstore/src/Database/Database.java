@@ -120,7 +120,7 @@ public class Database {
 
     public Client getClientInfo(int id) throws SQLException {
         System.out.println("InfoofClient"+ id);
-        Client swap = new Client(-1,"undefined", "undefined", "undefined");
+        Client swap = new Client(-1,"default", "default", "default");
         Connection con = getConnection();
         ResultSet res;
         try {
@@ -147,15 +147,15 @@ public class Database {
     static final String queryAccount = "select * from account";
 
     public Account getAccountInfo(int id) throws SQLException {
-        System.out.println("zaciatok metody getAccountInfo"+ id);
-        Account swap = new Account(-1,-1, "undefined", -1);
+        System.out.println("info"+ id);
+        Account swap = new Account(-1,-1, "default", -1);
         Connection con = getConnection();
         ResultSet res;
         try {
             PreparedStatement stmnt = con.prepareStatement(queryAccount);
             res = stmnt.executeQuery();
             while (res.next()) {
-                System.out.println("zaaas"+ res.getInt("id"));
+                System.out.println("kk"+ res.getInt("id"));
                 if (res.getInt("idc") == id) {
                     String accountNum = res.getString("accnum");
                     double amount = res.getDouble("amount");
