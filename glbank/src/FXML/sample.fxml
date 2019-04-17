@@ -13,9 +13,10 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane alignment="CENTER" hgap="10.0" vgap="10.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="windows.Controller">
+<GridPane alignment="CENTER" hgap="10.0" vgap="10.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sample.Controller">
   <children>
     <Pane prefHeight="563.0" prefWidth="703.0" style="" GridPane.columnIndex="1" GridPane.rowIndex="1">
       <children>
@@ -37,8 +38,15 @@
         <Label font="$x1" layoutX="201.0" layoutY="365.0" prefHeight="30.951171875" prefWidth="88.0" text="Password" />
         <TextField fx:id="loginInput" layoutX="302.0" layoutY="290.0" prefHeight="33.951171875" text="..." />
         <TextField fx:id="passInput" layoutX="302.0" layoutY="365.0" prefHeight="33.951171875" text="..." />
-        <Label fx:id="wrongName" layoutX="326.0" layoutY="258.0" text="Wrong user name" textFill="#fc0909" visible="false" />
-        <Label fx:id="wrongPassword" layoutX="331.0" layoutY="324.0" text="Wrong password" textFill="#f00000" visible="false" />
+        <Label fx:id="wrongName" layoutX="302.0" layoutY="324.0" prefHeight="30.951171875" prefWidth="142.0" style="-fx-text-fill: red;" text="Wrong user name" visible="false">
+          <font>
+            <Font name="Arial" size="10.0" fx:id="x2" />
+          </font>
+          <textFill>
+            <Color blue="0.000" green="0.227" red="0.027" fx:id="x3" />
+          </textFill>
+        </Label>
+        <Label fx:id="wrongPassword" font="$x2" layoutX="302.0" layoutY="397.0" prefHeight="30.951149804684974" prefWidth="142.00009999999747" style="-fx-text-fill: red;" text="Wrong password" textFill="$x3" visible="false" />
       </children>
     </Pane>
   </children>

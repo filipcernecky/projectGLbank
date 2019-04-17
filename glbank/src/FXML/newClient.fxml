@@ -10,7 +10,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="262.0" prefWidth="453.0" style="-fx-background-color: #a0d999;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="windows.newClient">
+<AnchorPane prefHeight="262.0" prefWidth="453.0" style="-fx-background-color: #a0d999;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sample.NewClient">
   <children>
     <Label layoutX="184.0" layoutY="24.0" text="New Client">
       <font>

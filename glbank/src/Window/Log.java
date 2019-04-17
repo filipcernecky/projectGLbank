@@ -106,10 +106,10 @@ public class Log<client> {
         Database database = Database.getInstanceOfDatabase();
         int id = getSelectedClientID();
         System.out.println(id);
-        Client clientik = database.getClientInfo(getSelectedClientID());
-        menoClient.setText(clientik.getFname());
-        priezviskoCleint.setText(clientik.getLname());
-        emailClient.setText(clientik.getEmail());
+        Client subject = database.getClientInfo(getSelectedClientID());
+        menoClient.setText(subject.getFname());
+        priezviskoCleint.setText(subject.getLname());
+        emailClient.setText(subject.getEmail());
     }
 
     public int getSelectedClientID() {
@@ -121,11 +121,22 @@ public class Log<client> {
     }
 
     public void showClientsInfo(int id) throws SQLException {
-        Client clientik = database.getClientInfo(getSelectedClientID());
-        menoClient.setText(clientik.getFname());
-        priezviskoCleint.setText(clientik.getLname());
-        emailClient.setText(clientik.getEmail());
+        Client subject = database.getClientInfo(getSelectedClientID());
+        menoClient.setText(subject.getFname());
+        priezviskoCleint.setText(subject.getLname());
+        emailClient.setText(subject.getEmail());
     }
+
+    /*public void accounts() throws SQLException{
+        System.out.println("Account size "+ account.size());
+        list2 = FXCollections.observableArrayList();
+        for (int i=0; i<this.account.size();i++){
+            list2.add(this.account.get(i).getAccountNumber());
+        }
+        clientsAccounts.setItems(list2);
+        System.out.println("Full List!");
+        //wip
+    }*/
 
     public void showAccountInfo() throws SQLException {
         System.out.println("show");
@@ -136,15 +147,15 @@ public class Log<client> {
         Database database = Database.getInstanceOfDatabase();
         int id = getSelectedClientID();
         System.out.println(id);
-        Account ucet = database.getAccountInfo(getSelectedClientID());
-        accNumber.setText(ucet.getAccountNumber());
-        money.setText(String.valueOf(ucet.getAmount()));
+        Account test = database.getAccountInfo(getSelectedClientID());
+        accNumber.setText(test.getAccountNumber());
+        money.setText(String.valueOf(test.getAmount()));
     }
 
     public void showAccountInfo(int id) throws SQLException {
-        Account ucet = database.getAccountInfo(getSelectedClientID());
-        accNumber.setText(ucet.getAccountNumber());
-        money.setText(String.valueOf(ucet.getAmount()));
+        Account test = database.getAccountInfo(getSelectedClientID());
+        accNumber.setText(test.getAccountNumber());
+        money.setText(String.valueOf(test.getAmount()));
     }
 
 

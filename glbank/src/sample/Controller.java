@@ -50,16 +50,13 @@ public class Controller {
                 Stage stage = new Stage();
                 stage.setScene(new Scene(accountView));
 
-                //Log log = fxmlLoader.getController();
-                //log.showData(emp);
-
                 stage.show();
             } catch (IOException e){
                 e.printStackTrace();
             }
 
         } else {
-            //este dokoncit
+
             wrongName.setVisible(true);
             wrongPassword.setVisible(true);
         }

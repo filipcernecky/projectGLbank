@@ -18,7 +18,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="473.0" prefWidth="649.0" style="-fx-background-color: #a0d999;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="windows.Log">
+<AnchorPane prefHeight="473.0000999999975" prefWidth="678.0" style="-fx-background-color: #a0d999;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Window.Log">
   <children>
     <Label fx:id="name" layoutX="309.0" layoutY="28.0" prefHeight="24.0" prefWidth="75.0" text="Label">
       <font>
@@ -38,12 +38,12 @@
     </ImageView>
     <Separator layoutY="70.0" prefHeight="2.0" prefWidth="600.0" />
     <ComboBox fx:id="clientsNames" layoutX="114.0" layoutY="83.0" onAction="#showClientsInfo" prefHeight="35.0" prefWidth="233.0" />
-    <Button fx:id="addNewClient" font="$x1" layoutX="411.0" layoutY="83.0" mnemonicParsing="false" onAction="#createNewClient" prefHeight="35.0" text="New Client" />
-    <TabPane disable="false" focusTraversable="true" layoutX="0.0" layoutY="129.0" opacity="1.0" prefHeight="309.0" prefWidth="650.0" style="-fx-background-color: #f2621f;" tabClosingPolicy="UNAVAILABLE" visible="true">
+    <Button fx:id="addNewClient" font="$x1" layoutX="384.0" layoutY="83.0" mnemonicParsing="false" onAction="#createNewClient" prefHeight="35.0" text="New Client" />
+    <TabPane disable="false" focusTraversable="true" layoutX="14.0" layoutY="129.0" opacity="1.0" prefHeight="309.0" prefWidth="650.0" style="-fx-background-color: #5c9b55;" tabClosingPolicy="UNAVAILABLE" visible="true">
       <tabs>
         <Tab text="Client">
           <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="254.0" prefWidth="650.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="226.0" prefWidth="600.0">
               <children>
                 <Label layoutX="51.0" layoutY="38.0" text="Name:">
                   <font>
@@ -71,8 +71,7 @@
                 <ComboBox fx:id="clientsAccounts" layoutX="206.0" layoutY="24.0" onAction="#showAccountInfo" prefWidth="267.0" />
                 <Separator layoutY="65.0" prefHeight="3.0" prefWidth="600.0" />
                 <Label fx:id="accNumber" font="$x1" layoutX="32.0" layoutY="80.0" text="number" />
-                <Label font="$x3" layoutX="153.0" layoutY="119.0" text="cash:" />
-                <Label fx:id="money" layoutX="206.0" layoutY="114.0" text="money">
+                <Label fx:id="money" layoutX="51.0" layoutY="114.0" text="...">
                   <font>
                     <Font name="Arial Bold" size="21.0" />
                   </font>
@@ -82,17 +81,22 @@
             </AnchorPane>
           </content>
         </Tab>
-        <Tab text=" ">
+        <Tab text="IB">
           <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <children>
+                <Label font="$x1" layoutX="123.0" layoutY="37.0" text="Log-in" />
+                <Label id="priezviskoCleint" font="$x1" layoutX="78.0" layoutY="134.0" text="State of card" />
+                <Label id="priezviskoCleint" font="$x1" layoutX="38.0" layoutY="76.0" text="Change Password" />
+                <Label id="priezviskoCleint" font="$x1" layoutX="255.0" layoutY="133.0" text="Blocked" />
+                <TextField id="loginInput" layoutX="195.0" layoutY="76.0" prefHeight="33.951171875" text="" />
+                <TextField id="loginInput" layoutX="195.0" layoutY="29.0" prefHeight="33.951171875" text="" />
+                <TextField id="loginInput" layoutX="195.0" layoutY="125.0" prefHeight="34.0" prefWidth="46.0" text="" />
+              </children>
+            </AnchorPane>
           </content>
         </Tab>
-        <Tab text=" ">
-          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-          </content>
-        </Tab>
-        <Tab text=" ">
+        <Tab text="Cards">
           <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
           </content>
