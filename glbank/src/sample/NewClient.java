@@ -14,14 +14,14 @@ import java.io.IOException;
 
 public class NewClient {
 
-    public TextField meno;
-    public TextField priezvisko;
+    public TextField Fname;
+    public TextField Lname;
     public TextField email;
 
 
     public void sendingNC(ActionEvent actionEvent) throws IOException {
-        String clientsName = meno.getText();
-        String clientsSurname = priezvisko.getText();
+        String clientsName = Fname.getText();
+        String clientsSurname = Lname.getText();
         String clientsEmail = email.getText();
 
         System.out.println(clientsName + clientsSurname + clientsEmail);

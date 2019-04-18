@@ -3,6 +3,8 @@ package Window;
 import Client.Client;
 import Database.Database;
 import Employee.Employee;
+import Client.Account;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,7 +21,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import Client.Account;
+import java.util.Random;
 
 
 public class Log<client> {
@@ -31,8 +33,8 @@ public class Log<client> {
 
     public ComboBox clientsNames;
     public Button addNewClient;
-    public Label menoClient;
-    public Label priezviskoCleint;
+    public Label FnameClient;
+    public Label LnameClient;
     public Label emailClient;
 
     public ComboBox clientsAccounts;
@@ -112,6 +114,24 @@ public class Log<client> {
         emailClient.setText(subject.getEmail());
     }
 
+    public void fillClientsInfo() throws SQLException {
+        int id = clientsNames.getSelectionModel().getSelectedIndex();
+        System.out.println("id of user"+ id);
+        client = client.get(id);
+        System.out.println("info of user");
+        FnameClient.setText(client.getFname());
+        LnameClient.setText(client.getLname());
+        emailClient.setText(client.getEmail());
+
+        this.account = database.getAllAccounts(client.getId());
+        System.out.println("id of client  "+client.getId());
+
+        accounts();
+        System.out.println("account list");
+        clientsAccounts.getSelectionModel().select(0);
+
+    }
+
     public int getSelectedClientID() {
         System.out.println("select");
         System.out.println(clientsNames.getSelectionModel().getSelectedIndex());
@@ -122,21 +142,32 @@ public class Log<client> {
 
     public void showClientsInfo(int id) throws SQLException {
         Client subject = database.getClientInfo(getSelectedClientID());
-        menoClient.setText(subject.getFname());
-        priezviskoCleint.setText(subject.getLname());
+        FnameClient.setText(subject.getFname());
+        LnameClient.setText(subject.getLname());
         emailClient.setText(subject.getEmail());
     }
 
-    /*public void accounts() throws SQLException{
-        System.out.println("Account size "+ account.size());
-        list2 = FXCollections.observableArrayList();
+    public void accounts() throws SQLException{
+        System.out.println("list size: "+ account.size());
+        lists = FXCollections.observableArrayList();
         for (int i=0; i<this.account.size();i++){
-            list2.add(this.account.get(i).getAccountNumber());
+            lists.add(this.account.get(i).getAccountNumber());
         }
-        clientsAccounts.setItems(list2);
-        System.out.println("Full List!");
-        //wip
-    }*/
+        clientsAccounts.setItems(lists);
+        System.out.println("list is full!");
+
+
+        if (selectedInxAcc == null){
+            System.out.println("select index");
+            selectedInxAcc =1;
+            clientsAccounts.getSelectionModel().select(0);
+        }
+
+        System.out.println("index: "+selectedInxAcc);
+        showAccountsInfo();
+        System.out.println("account info: ");
+    }
+
 
     public void showAccountInfo() throws SQLException {
         System.out.println("show");
@@ -157,6 +188,34 @@ public class Log<client> {
         accNumber.setText(test.getAccountNumber());
         money.setText(String.valueOf(test.getAmount()));
     }
+
+    public String generetatingAccoutnNumber(){
+        Random random = new Random();
+        String number ="";
+        for (int i=0;i<10;i++){
+            number = number + random.nextInt(10);
+        }
+
+        for (int i=0;i < this.account.size(); i++){
+            if (account.get(i).getAccountNumber().equals(number)){
+                System.out.println("accout is already in databesa");
+            }
+            else {
+                System.out.println("creating new account");
+                return number;
+            }
+        }
+        return number;
+    }
+
+    public void createNewAccount() throws SQLException {
+        String numAcc =  generetatingAccoutnNumber();
+        database.addNewAccount(client.getId(), numAcc);
+        this.account.add(new Account(numAcc));
+        accounts();
+    }
+
+
 
 
 }

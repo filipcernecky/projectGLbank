@@ -2,13 +2,16 @@ package Database;
 
 import Employee.Employee;
 import sample.Globals;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.sql.*;
 
 import Client.Account;
 import Client.Client;
-//import Window.Log;
+import Window.Log;
+
 
 public class Database {
 
@@ -168,6 +171,29 @@ public class Database {
             e.printStackTrace();
         }
         return swap;
+
+    }
+
+    static final String queryNewAccount = "insert into account(idc,accNum,amount) values(?,?,?)";
+
+    public void addNewAccount(int idc, String number){
+        Connection conn = getConnection();
+        System.out.println("creating in process");
+        try{
+            PreparedStatement statement = conn.prepareStatement(queryNewAccount);
+            statement.setInt(1,idc);
+            statement.setString(2,number);
+            statement.setDouble(3,0);
+            if(statement.execute()){
+                System.out.println("acc 01");
+            }else{
+                System.out.println("acc 02");
+            }
+            conn.close();
+
+        }  catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
