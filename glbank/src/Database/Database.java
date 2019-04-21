@@ -10,6 +10,7 @@ import java.sql.*;
 
 import Client.Account;
 import Client.Client;
+import Client.Card;
 import Window.Log;
 
 
@@ -195,6 +196,36 @@ public class Database {
             e.printStackTrace();
         }
 
+    }
+
+    static final String queryCard = "select * from card where ida =?";
+
+    public List<Card> getAllCards(int idAcc){
+        Connection con = getConnection();
+        System.out.println("Connectin Done");
+        ResultSet res;
+        List<Card> cards = new ArrayList<>();
+        try {
+            PreparedStatement word = con.prepareStatement(queryCard);
+            word.setInt(1,idAcc);
+            res = word.executeQuery();
+            while (res.next()){
+                int id = res.getInt("id");
+                int ida = res.getInt("ida");
+                String pin = res.getString("pin");
+                boolean active = res.getBoolean("active");
+                int expireM = res.getInt("expireM");
+                int expireY = res.getInt("expireY");
+                Card card = new Card(id, ida,pin,active,expireM,expireY);
+                cards.add(card);
+
+            }
+            return cards;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

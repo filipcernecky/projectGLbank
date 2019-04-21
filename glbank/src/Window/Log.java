@@ -1,9 +1,10 @@
 package Window;
 
-import Client.Client;
 import Database.Database;
 import Employee.Employee;
 import Client.Account;
+import Client.Client;
+import Client.Card;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -215,7 +216,17 @@ public class Log<client> {
         accounts();
     }
 
+    /*
+    public void cards() throws SQLException{
+        System.out.println("Card list size:"+ card.size());
+        list3 = FXCollections.observableArrayList();
+        for (int i=0; i<this.card.size();i++){
+            list3.add(String.valueOf(this.card.get(i).getId()));
+        }
+        clientsCards.setItems(list3);
+        System.out.println("card list full");
 
-
+    }
+    */
 
 }
