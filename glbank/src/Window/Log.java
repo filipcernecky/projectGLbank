@@ -118,7 +118,7 @@ public class Log<client> {
     public void fillClientsInfo() throws SQLException {
         int id = clientsNames.getSelectionModel().getSelectedIndex();
         System.out.println("id of user"+ id);
-        client = client.get(id);
+        client = Client.get(id);
         System.out.println("info of user");
         FnameClient.setText(client.getFname());
         LnameClient.setText(client.getLname());
@@ -216,7 +216,6 @@ public class Log<client> {
         accounts();
     }
 
-    /*
     public void cards() throws SQLException{
         System.out.println("Card list size:"+ card.size());
         list3 = FXCollections.observableArrayList();
@@ -227,6 +226,5 @@ public class Log<client> {
         System.out.println("card list full");
 
     }
-    */
 
 }
