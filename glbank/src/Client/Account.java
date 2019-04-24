@@ -1,10 +1,18 @@
 package Client;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
+import Database.Database;
+
 public class Account {
     private int id;
     private int idc;
     private String  accountNumber;
     private double amount;
+    private List<Card> cards = new ArrayList<>();
 
     public Account(int id, int idc, String accountNumber, double amount) {
         this.id = id;
@@ -33,4 +41,13 @@ public class Account {
     public double getAmount() {
         return amount;
     }
+
+    public List<Card> getCards() {
+        return cards;
+    }
+
+    public void setCards(List<Card> cards) {
+        this.cards = cards;
+    }
+
 }
