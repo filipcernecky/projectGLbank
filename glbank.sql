@@ -235,7 +235,7 @@ DROP TABLE IF EXISTS `loginhistory`;
 CREATE TABLE `loginhistory` (
   `loginTime` timestamp NOT NULL,
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `success` tinyint(1) NOT NULL,
+  `Success` tinyint(1) DEFAULT NULL,
   `IDLoginClient` int(11) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `IDLoginClient` (`IDLoginClient`)
@@ -313,4 +313,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-20 20:50:15
+-- Dump completed on 2019-04-25 13:04:56
