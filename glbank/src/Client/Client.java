@@ -49,7 +49,26 @@ public class Client {
 
     public boolean addAccount(String accNum){
         Database database = Database.getInstanceOfDatabase();
-        return Database.addNewAccount(this.id,accNum);
+        return database.addNewAccount(this.id,accNum);
+    }
+
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
+    }
+
+    public boolean loadAccounts(){
+        Database database = Database.getInstanceOfDatabase();
+        List<Account> swapAccounts = database.getAllAccounts(this.id);
+        if (swapAccounts == null || swapAccounts.size() == 0){
+            return false;
+        }else {
+            accounts = swapAccounts;
+            return true;
+        }
+    }
+
+    public int countOfAccounts(){
+        return this.accounts.size();
     }
 
 }

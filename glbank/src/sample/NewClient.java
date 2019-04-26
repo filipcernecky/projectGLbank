@@ -29,11 +29,16 @@ public class NewClient {
         Client newClient = new Client(clientsName,clientsSurname,clientsEmail);
         Database database = Database.getInstanceOfDatabase();
 
-        database.addNewClient(newClient);
-
         Node node = (Node) actionEvent.getSource();
         Stage dialogStage = (Stage) node.getScene().getWindow();
         dialogStage.close();
+
+        int idClient = database.addNewClient(newClient);
+        if (idClient <0){
+            System.out.println("id not found");
+        }else{
+            database.addNewLoginClient(idClient);
+        }
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("../FXML/log.fxml"));

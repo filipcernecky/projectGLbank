@@ -1,5 +1,6 @@
 package Client;
 
+import Database.Database;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -48,6 +49,47 @@ public class Account {
 
     public void setCards(List<Card> cards) {
         this.cards = cards;
+    }
+
+    public boolean addCard(){
+        Database database = Database.getInstanceOfDatabase();
+        LocalDate date = LocalDate.now();
+        int month = date.getMonthValue();
+        int year = (date.getYear()+3) % 100;
+        System.out.println("month "+month+" year "+year);
+        String pin = generatingPIN();
+        return database.addNewCard(this.id,pin,month,year);
+    }
+
+    public boolean loadCards(){
+        Database database = Database.getInstanceOfDatabase();
+        List<Card> swapCards = database.getAllCards(this.id);
+        if (swapCards == null || swapCards.size() == 0){
+            return false;
+        }
+        else{
+            cards = swapCards;
+            return true;
+        }
+    }
+
+    public Card getCard(int id){
+        return this.cards.get(id);
+    }
+
+    public int getCountOfCards(){
+        return this.cards.size();
+    }
+
+    private String generatingPIN(){
+        Random random = new Random();
+        String pinNumber ="";
+        for (int i=0;i<4;i++){
+            pinNumber = pinNumber + random.nextInt(10);
+        }
+
+        System.out.println("pin "+pinNumber);
+        return pinNumber;
     }
 
 }

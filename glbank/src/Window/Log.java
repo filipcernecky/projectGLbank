@@ -110,8 +110,8 @@ public class Log<client> {
         int id = getSelectedClientID();
         System.out.println(id);
         Client subject = database.getClientInfo(getSelectedClientID());
-        menoClient.setText(subject.getFname());
-        priezviskoCleint.setText(subject.getLname());
+        fnameClient.setText(subject.getFname());
+        lnameCleint.setText(subject.getLname());
         emailClient.setText(subject.getEmail());
     }
 
@@ -158,17 +158,16 @@ public class Log<client> {
         System.out.println("list is full!");
 
 
-        if (selectedInxAcc == null){
+        if (selAccount == null){
             System.out.println("select index");
-            selectedInxAcc =1;
+            selAccount =1;
             clientsAccounts.getSelectionModel().select(0);
         }
 
-        System.out.println("index: "+selectedInxAcc);
+        System.out.println("index: "+selAccount);
         showAccountsInfo();
         System.out.println("account info: ");
     }
-
 
     public void showAccountInfo() throws SQLException {
         System.out.println("show");
@@ -216,15 +215,125 @@ public class Log<client> {
         accounts();
     }
 
-    public void cards() throws SQLException{
-        System.out.println("Card list size:"+ card.size());
-        list3 = FXCollections.observableArrayList();
-        for (int i=0; i<this.card.size();i++){
-            list3.add(String.valueOf(this.card.get(i).getId()));
+    public void loadCards() {
+        if(testsample ==null || testsample.getCountOfCards() == 0){
+            return;
         }
-        clientsCards.setItems(list3);
-        System.out.println("card list full");
+        updateCards();
+        testcard =testsample.getCard(0);
+        comBoxClientCards.getSelectionModel().select(0);
+        showCardInfo();
+    }
+
+    private void updateCards(){
+        ObservableList<String> list3 = FXCollections.observableArrayList();
+        for (Card swap : testsample.getCards()){
+            list3.add(String.valueOf(swap.getId()));
+        }
+        comBoxClientCards.setItems(list3);
+    }
+
+    private void showCardInfo(){
+        lblPin.setText(this.testcard.getPin());
+        lblActive.setText(String.valueOf(this.testcard.isActive()));
+        lblExpireDate.setText(this.testcard.getExpireM()+"/"+this.testcard.getExpireY());
+        lblAccountNumber.setText(String.valueOf(this.testcard.getIda()));
+    }
+
+    public void selectCard(){
+        lblPin.setText("");
+        lblActive.setText("");
+        lblAccountNumber.setText("");
+        lblExpireDate.setText("");
+
+        if(testsample == null || this.testsample.getCountOfCards() ==0){
+            return;
+        }
+        int selected = comBoxClientCards.getSelectionModel().getSelectedIndex();
+        if (selected<0){
+            lblAccNumber.setText("");
+            lblMoney.setText("");
+            return;
+        }
+        testcard = testsample.getCard(selected);
+        showCardInfo();
+
 
     }
 
+    public void createNewCard() {
+        if(!this.testsample.addCard()){
+            lblMessNewCArd.setText("Card not created");
+        }
+        lblMessNewCArd.setText("Card created");
+        testsample.loadCards();
+        updateCards();
+        loadCards();
+    }
+
+    public static String generatingLogin(){
+
+        Random random = new Random();
+        String userName ="";
+        for (int i=0;i<7;i++){
+            userName = userName + random.nextInt(10);
+        }
+
+        System.out.println("login "+userName);
+        Database database = Database.getInstanceOfDatabase();
+        if (database.loginClientExist(userName)){
+            return "";
+        }
+        else{
+            return userName;
+        }
+    }
+
+    public static String generatingPass(){
+        Random random = new Random();
+        String userPassowrd ="";
+        for (int i=0;i<7;i++){
+            userPassowrd = userPassowrd + random.nextInt(26)+65;
+        }
+
+        System.out.println("passowrd "+userPassowrd);
+        return userPassowrd;
+    }
+
+    private void showIBinfo(){
+        int id = testsample.getId();
+        String userName = database.userNameLoginClient(id);
+        lblLogin.setText(userName);
+    }
+
+
+    public void btnResetPass(ActionEvent actionEvent) {
+        int id = testsample.getId();
+        database.resetIBPass(id);
+    }
+
+    public void blockByEmp(ActionEvent actionEvent) {
+        int id = testsample.getId();
+        if(!checkBoxBlock.isSelected()){
+            database.unblockByEmp(id);
+        }
+        else{
+            database.blockByEmp(id);
+        }
+    }
+
+    public void selectAccountTran(ActionEvent actionEvent) {
+        System.out.println("account list");
+        if (testsample == null || testsample.countOfAccounts() == 0){
+            return;
+        }
+        int selected  = comBoxTransAccounts.getSelectionModel().getSelectedIndex();
+        if (selected<0){
+            return;
+        }
+        testsample = testchmbr.getAccount(selected);
+        showAccountsInfo();
+        testchmbr.loadCards();
+        loadCards();
+    }
 }
