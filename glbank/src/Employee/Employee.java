@@ -17,7 +17,6 @@ public class Employee {
         this.lname = lname;
     }
 
-
     public int getId() {
         return id;
     }

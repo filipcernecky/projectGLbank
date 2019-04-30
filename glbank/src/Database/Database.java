@@ -33,7 +33,7 @@ public class Database {
         try {
             Class.forName(Globals.driver);
             System.out.println("done");
-            connection = DriverManager.getConnection(Globals.url, Globals.username, Globals.password);
+            connection = DriverManager.getConnection(Globals.url, Globals.user, Globals.password);
             return connection;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

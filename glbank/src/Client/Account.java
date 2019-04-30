@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
-import Database.Database;
 
 public class Account {
     private int id;
@@ -22,9 +21,8 @@ public class Account {
         this.amount = amount;
     }
 
-    public Account( String accountNumber, double amount){
+    public Account( String accountNumber){
         this.accountNumber = accountNumber;
-        this.amount = amount;
     }
 
     public int getId() {
@@ -81,7 +79,7 @@ public class Account {
         return this.cards.size();
     }
 
-    private String generatingPIN(){
+    public static String generatingPIN(){
         Random random = new Random();
         String pinNumber ="";
         for (int i=0;i<4;i++){
