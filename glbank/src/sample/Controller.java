@@ -46,8 +46,8 @@ public class Controller {
                 fxmlLoader.setLocation(getClass().getResource("../FXML/log.fxml"));
                 Parent accountView = fxmlLoader.load();
 
-                Log log = fxmlLoader.getController();
-                log.showData(emp);
+                //Log log = fxmlLoader.getController();
+                //log.showData(emp);
 
                 Stage stage = new Stage();
                 stage.setScene(new Scene(accountView));
